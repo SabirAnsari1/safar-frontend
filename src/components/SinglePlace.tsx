@@ -127,21 +127,35 @@ export const SinglePlace = ({
       {/* first */}
       <Box>
         {/* first */}
-        <Image src={img} alt={city} w={"100%"} maxH={"500px"} borderRadius="5px" />
+        <Image
+          src={img}
+          alt={city}
+          w={"100%"}
+          maxH={"500px"}
+          borderRadius="5px"
+        />
 
         {/* second */}
         <Box pos={"absolute"} top={"5%"} right={"7%"}>
-          <Icon aria-label="favorite" as={BsFillSuitHeartFill} color={"#f1095d"} />
+          <Icon
+            aria-label="favorite"
+            as={BsFillSuitHeartFill}
+            color={"#f1095d"}
+          />
         </Box>
 
         {/* third */}
         <Flex justify={"space-between"} mt={".3rem"}>
-          <Text fontWeight={"semibold"} color={colorMode === "light" ? "black" : "white"}>
+          <Text
+            fontWeight={"semibold"}
+            color={colorMode === "light" ? "black" : "white"}
+          >
             {city}, {country}
           </Text>
 
           <Box>
-            <Icon aria-label="rating" as={AiFillStar} color={"#567eb9"} /> {rating}
+            <Icon aria-label="rating" as={AiFillStar} color={"#567eb9"} />{" "}
+            {rating}
           </Box>
         </Flex>
 
@@ -179,9 +193,7 @@ export const SinglePlace = ({
           color={"white"}
           onClick={onOpen}
           _hover={{
-            bg: "#fff",
-            border: "4px double #f1095d",
-            color: "#f1095d",
+            bg: "null",
           }}
         >
           Book Now
@@ -203,7 +215,9 @@ export const SinglePlace = ({
               <FormLabel fontWeight={"bold"}>Check in date</FormLabel>
               <Input
                 type="date"
-                onChange={(e) => dispatch({ type: "CHECK_IN", payload: e.target.value })}
+                onChange={(e) =>
+                  dispatch({ type: "CHECK_IN", payload: e.target.value })
+                }
               />
             </FormControl>
 
@@ -211,7 +225,9 @@ export const SinglePlace = ({
               <FormLabel fontWeight={"bold"}>Check out date</FormLabel>
               <Input
                 type="date"
-                onChange={(e) => dispatch({ type: "CHECK_OUT", payload: e.target.value })}
+                onChange={(e) =>
+                  dispatch({ type: "CHECK_OUT", payload: e.target.value })
+                }
               />
             </FormControl>
 
@@ -225,12 +241,18 @@ export const SinglePlace = ({
                 <Box>
                   <Button
                     isDisabled={adults === 0}
-                    onClick={() => dispatch({ type: "ADULTS", payload: adults - 1 })}
+                    onClick={() =>
+                      dispatch({ type: "ADULTS", payload: adults - 1 })
+                    }
                   >
                     -
                   </Button>
                   <Button isDisabled>{adults}</Button>
-                  <Button onClick={() => dispatch({ type: "ADULTS", payload: adults + 1 })}>
+                  <Button
+                    onClick={() =>
+                      dispatch({ type: "ADULTS", payload: adults + 1 })
+                    }
+                  >
                     +
                   </Button>
                 </Box>
@@ -247,12 +269,18 @@ export const SinglePlace = ({
                 <Box>
                   <Button
                     isDisabled={children === 0}
-                    onClick={() => dispatch({ type: "CHILDREN", payload: children - 1 })}
+                    onClick={() =>
+                      dispatch({ type: "CHILDREN", payload: children - 1 })
+                    }
                   >
                     -
                   </Button>
                   <Button isDisabled>{children}</Button>
-                  <Button onClick={() => dispatch({ type: "CHILDREN", payload: children + 1 })}>
+                  <Button
+                    onClick={() =>
+                      dispatch({ type: "CHILDREN", payload: children + 1 })
+                    }
+                  >
                     +
                   </Button>
                 </Box>
@@ -269,12 +297,18 @@ export const SinglePlace = ({
                 <Box>
                   <Button
                     isDisabled={infants === 0}
-                    onClick={() => dispatch({ type: "INFANTS", payload: infants - 1 })}
+                    onClick={() =>
+                      dispatch({ type: "INFANTS", payload: infants - 1 })
+                    }
                   >
                     -
                   </Button>
                   <Button isDisabled>{infants}</Button>
-                  <Button onClick={() => dispatch({ type: "INFANTS", payload: infants + 1 })}>
+                  <Button
+                    onClick={() =>
+                      dispatch({ type: "INFANTS", payload: infants + 1 })
+                    }
+                  >
                     +
                   </Button>
                 </Box>
@@ -291,12 +325,20 @@ export const SinglePlace = ({
                 <Box>
                   <Button
                     isDisabled={rooms === 0}
-                    onClick={() => dispatch({ type: "ROOMS", payload: rooms - 1 })}
+                    onClick={() =>
+                      dispatch({ type: "ROOMS", payload: rooms - 1 })
+                    }
                   >
                     -
                   </Button>
                   <Button isDisabled>{rooms}</Button>
-                  <Button onClick={() => dispatch({ type: "ROOMS", payload: rooms + 1 })}>+</Button>
+                  <Button
+                    onClick={() =>
+                      dispatch({ type: "ROOMS", payload: rooms + 1 })
+                    }
+                  >
+                    +
+                  </Button>
                 </Box>
               </Flex>
             </FormControl>
@@ -310,9 +352,7 @@ export const SinglePlace = ({
                   color={"white"}
                   w={"100%"}
                   _hover={{
-                    bg: "#fff",
-                    border: "4px double #f1095d",
-                    color: "#f1095d",
+                    bg: "null",
                   }}
                   onClick={handleBookingPreview}
                 >

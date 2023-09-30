@@ -1,4 +1,12 @@
-import { Box, Flex, Text, Grid, Center, Stack, Skeleton } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Text,
+  Grid,
+  Center,
+  Stack,
+  Skeleton,
+} from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../redux/store";
 import { getHomePage } from "../redux/places/action";
@@ -14,7 +22,10 @@ const skeleton: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 export const HomeList = ({ str1, str2 }: HomeListProp) => {
   const { home, isLoading } = useAppSelector(
-    (store) => ({ home: store.placesReducer.home, isLoading: store.placesReducer.isLoading }),
+    (store) => ({
+      home: store.placesReducer.home,
+      isLoading: store.placesReducer.isLoading,
+    }),
     shallowEqual
   );
   const dispatch = useAppDispatch();

@@ -142,9 +142,7 @@ export const SeeMore = ({ str1, str2, str3 }: SeeMoreProp) => {
                   "2xl": "md",
                 }}
                 _hover={{
-                  bg: "#fff",
-                  border: "4px double #f1095d",
-                  color: "#f1095d",
+                  bg: "null",
                 }}
               >
                 See More

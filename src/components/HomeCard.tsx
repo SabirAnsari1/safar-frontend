@@ -1,4 +1,13 @@
-import { Text, Grid, Image, useColorMode, Icon, Box, Flex, Button } from "@chakra-ui/react";
+import {
+  Text,
+  Grid,
+  Image,
+  useColorMode,
+  Icon,
+  Box,
+  Flex,
+  Button,
+} from "@chakra-ui/react";
 import { Home } from "../utils/types";
 import { AiFillStar } from "react-icons/ai";
 import { BsFillSuitHeartFill } from "react-icons/bs";
@@ -26,9 +35,9 @@ export const HomeCard = ({ id, img, city, country, price, rating }: Home) => {
       />
 
       {/* second */}
-      <Box pos={"absolute"} top={"5%"} right={"7%"}>
+      {/* <Box pos={"absolute"} top={"5%"} right={"7%"}>
         <Icon aria-label="favorite" as={BsFillSuitHeartFill} color={"#f1095d"} />
-      </Box>
+      </Box> */}
 
       {/* third */}
       <Link to={"/places"}>
@@ -48,9 +57,7 @@ export const HomeCard = ({ id, img, city, country, price, rating }: Home) => {
             "2xl": "md",
           }}
           _hover={{
-            bg: "#fff",
-            border: "4px double #f1095d",
-            color: "#f1095d",
+            bg: "null",
           }}
         >
           See More
@@ -59,13 +66,17 @@ export const HomeCard = ({ id, img, city, country, price, rating }: Home) => {
 
       {/* forth */}
       <Flex justify={"space-between"} mt={".3rem"}>
-        <Text fontWeight={"semibold"} color={colorMode === "light" ? "black" : "white"}>
+        <Text
+          fontWeight={"semibold"}
+          color={colorMode === "light" ? "black" : "white"}
+        >
           {city}, {country}
         </Text>
 
         {/* fifth */}
         <Box>
-          <Icon aria-label="rating" as={AiFillStar} color={"#567eb9"} /> {rating}
+          <Icon aria-label="rating" as={AiFillStar} color={"#567eb9"} />{" "}
+          {rating}
         </Box>
       </Flex>
 

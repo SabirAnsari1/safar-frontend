@@ -24,7 +24,16 @@ export interface Places {
   hostTag: string;
 }
 
-export interface LoginData {
+export interface registerUser {
+  firstname: string;
+  lastname: string;
   email: string;
   password: string;
+  phone: string;
+}
+
+export interface loginUser {
+  email: string;
+  password: string;
+  phone: string;
 }

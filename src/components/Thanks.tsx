@@ -1,4 +1,12 @@
-import { Flex, Image, Box, Text, Button, Center, useColorMode } from "@chakra-ui/react";
+import {
+  Flex,
+  Image,
+  Box,
+  Text,
+  Button,
+  Center,
+  useColorMode,
+} from "@chakra-ui/react";
 import donate from "../assets/images/donate.png";
 import lightMap from "../assets/images/lightMap.jpg";
 import darkMap from "../assets/images/darkMap.jpg";
@@ -115,14 +123,26 @@ export const Thanks = ({ str1, str2, str3 }: ThanksProp) => {
         </Box>
 
         {/* second.2 */}
-        <Flex p={"1rem 0 1rem 1rem"} direction={"column"} justify={"center"} textAlign={"right"}>
+        <Flex
+          p={"1rem 0 1rem 1rem"}
+          direction={"column"}
+          justify={"center"}
+          textAlign={"right"}
+        >
           <Text>
-            SAFAR wouldn't be what it is without a dedicated community of passionate travelers.
+            SAFAR wouldn't be what it is without a dedicated community of
+            passionate travelers.
           </Text>
 
-          <Text mt={"1rem"}> SAFAR is a better place because of your ideas, help & hard work.</Text>
+          <Text mt={"1rem"}>
+            {" "}
+            SAFAR is a better place because of your ideas, help & hard work.
+          </Text>
 
-          <Text mt={"1rem"}> Please help us, So we can make more better for you.</Text>
+          <Text mt={"1rem"}>
+            {" "}
+            Please help us, So we can make more better for you.
+          </Text>
 
           <Box>
             <Link to={"https://donate.stripe.com/test_bIYdSgadeaqddTa000"}>
@@ -131,9 +151,7 @@ export const Thanks = ({ str1, str2, str3 }: ThanksProp) => {
                 mt={"1rem"}
                 color={"#fff"}
                 _hover={{
-                  bg: "#fff",
-                  border: "4px double #f1095d",
-                  color: "#f1095d",
+                  bg: "null",
                 }}
               >
                 Donate

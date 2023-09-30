@@ -1,11 +1,19 @@
-// AUTH
-export const USER_LOGIN_REQUEST = "userLogin/request";
-export const USER_LOGIN_ERROR = "userLogin/error";
-export const USER_LOGIN_SUCCESS = "userLogin/success";
+// authentication
+export const USER_REQUEST = "USER_REQUEST";
+export const USER_FAILURE = "USER_FAILURE";
+export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
+export const USER_REGISTER_SUCCESS = "USER_REGISTER_SUCCESS";
+export const RESET_REGISTER_INITIALSTATE = "RESET_REGISTER_INITIALSTATE";
 
-// PLACES
-export const PLACES_REQUEST = "places/request";
-export const PLACES_ERROR = "places/error";
-export const GET_HOME_SUCCESS = "getHome/success";
-export const GET_PLACES_SUCCESS = "getPlaces/success";
-export const UPDATE_PLACES_SUCCESS = "updatePlaces/success";
+// user favourites
+export const FAVORITE_REQUEST = "FAVORITE_REQUEST";
+export const FAVORITE_FAILURE = "FAVORITE_FAILURE";
+export const DELETE_FAVORITE = "DELETE_FAVORITE";
+export const GET_FAVORITE_SUCCESS = "GET_FAVORITE_SUCCESS";
+
+// places
+export const PLACES_REQUEST = "PLACES_REQUEST";
+export const PLACES_ERROR = "PLACES_ERROR";
+export const GET_HOME_SUCCESS = "GET_HOME_SUCCESS";
+export const GET_PLACES_SUCCESS = "GET_PLACES_SUCCESS";
+export const UPDATE_PLACES_SUCCESS = "UPDATE_PLACES_SUCCESS";

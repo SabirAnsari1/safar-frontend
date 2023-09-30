@@ -4,7 +4,6 @@ import {
   Button,
   Center,
   Flex,
-  Heading,
   IconButton,
   Img,
   Input,
@@ -16,35 +15,46 @@ import {
   FormHelperText,
   useToast,
 } from "@chakra-ui/react";
-import { useAppDispatch, useAppSelector } from "../redux/store";
-import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import facebook from "../assets/images/facebook.png";
 import google from "../assets/images/google.png";
-import { Link } from "react-router-dom";
-import { login } from "../redux/authentication/action";
+import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { signup, userRegisterResetFunc } from "../redux/authentication/action";
+import { Link, Navigate } from "react-router-dom";
 import { shallowEqual } from "react-redux";
 
-export const Login = () => {
+export const Signup = () => {
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
   const toast = useToast();
-  const { isLoading, isError, errMessage, isAuth, users } = useAppSelector(
+  const { isLoading, isError, errMessage, isRegistered } = useAppSelector(
     (store) => ({
       isLoading: store.authReducer.isLoading,
       isError: store.authReducer.isError,
       errMessage: store.authReducer.errMessage,
-      isAuth: store.authReducer.isAuth,
-      users: store.authReducer.users,
+      isRegistered: store.authReducer.isRegistered,
     }),
     shallowEqual
   );
-  const [loginUser, setLoginUser] = useState({});
 
-  useEffect(() => {
-    // dispatch(login);
-  }, []);
+  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const registerUser = {
+      firstname,
+      lastname,
+      phone,
+      email,
+      password,
+    };
+
+    dispatch(signup(registerUser));
+  };
 
   useEffect(() => {
     {
@@ -64,28 +74,39 @@ export const Login = () => {
             position: "top",
             duration: 1000,
           })
+        : isRegistered
+        ? toast({
+            title: `New User Registered Successfully`,
+            status: "success",
+            isClosable: true,
+            position: "top",
+            duration: 1000,
+          })
         : "";
     }
-  }, [isLoading, isError]);
+  }, [isLoading, isError, isRegistered]);
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const loginUser = {
-      email,
-      password,
-    };
-  };
+  useEffect(() => {
+    dispatch(userRegisterResetFunc);
+    setFirstname("");
+    setLastname("");
+    setPhone("");
+    setEmail("");
+    setPassword("");
+  }, [isRegistered]);
 
   return (
     <Flex minW={"100wh"} minH={"100vh"} justify={"center"} align={"center"}>
       <Flex w={"80%"} h={"80%"} justify={"center"} align={"center"}>
+        {isRegistered && <Navigate to="/login" replace />}
         <Box w={"50%"} p={"1rem"}>
-          {/* <FormControl> */}
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleRegister}>
             <FormControl>
               <VStack spacing={"1rem"}>
                 <Flex w={"100%"} gap={"1rem"}>
+                  <Button w={"50%"}>
+                    <Link to={"/login"}>Login</Link>
+                  </Button>
                   <Button
                     w={"50%"}
                     bgColor={"#f1095d"}
@@ -94,18 +115,39 @@ export const Login = () => {
                       bg: "null",
                     }}
                   >
-                    Login
-                  </Button>
-                  <Button w={"50%"}>
-                    <Link to={"/signup"}>Register</Link>
+                    Register
                   </Button>
                 </Flex>
 
                 <Input
+                  type="text"
+                  placeholder="First Name"
+                  variant={"filled"}
+                  borderRadius={"5px 5px 0px 0px"}
+                  value={firstname}
+                  onChange={(e) => setFirstname(e.target.value)}
+                />
+                <Input
+                  type="text"
+                  placeholder="Last Name"
+                  variant={"filled"}
+                  borderRadius={"0px"}
+                  value={lastname}
+                  onChange={(e) => setLastname(e.target.value)}
+                />
+                <Input
+                  type="number"
+                  placeholder="Phone Number"
+                  variant={"filled"}
+                  borderRadius={"0px"}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+                <Input
                   type="email"
                   placeholder="Email"
                   variant={"filled"}
-                  borderRadius={"5px 5px 0px 0px"}
+                  borderRadius={"0px"}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -146,7 +188,7 @@ export const Login = () => {
                 </Button>
                 <Center>
                   <Text>
-                    Don't have account? <Link to="/signup">Signup</Link>
+                    Already have account? <Link to={"/login"}>Login</Link>
                   </Text>
                 </Center>
                 <Center>

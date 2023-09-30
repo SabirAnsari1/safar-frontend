@@ -7,7 +7,12 @@ interface IPaginationProps {
   handlePageChange: (page: number) => void;
 }
 
-const Pagination = ({ placesLength, perPage, activePage, handlePageChange }: IPaginationProps) => {
+const Pagination = ({
+  placesLength,
+  perPage,
+  activePage,
+  handlePageChange,
+}: IPaginationProps) => {
   const totalPages = Math.ceil(placesLength / perPage);
   return (
     <Flex gap={3}>
@@ -27,15 +32,15 @@ const Pagination = ({ placesLength, perPage, activePage, handlePageChange }: IPa
             "2xl": "block",
           }}
           _hover={{
-            bg: "#fff",
-            border: "4px double #f1095d",
-            color: "#f1095d",
+            bg: "null",
           }}
         >
           Prev
         </Button>
       ) : (
-        <Heading textAlign={"center"}>No result found, Please try again...</Heading>
+        <Heading textAlign={"center"}>
+          No result found, Please try again...
+        </Heading>
       )}
 
       {/* {....} */}
@@ -51,9 +56,7 @@ const Pagination = ({ placesLength, perPage, activePage, handlePageChange }: IPa
               onClick={() => handlePageChange(index + 1)}
               key={index}
               _hover={{
-                bg: "#fff",
-                border: "4px double #f1095d",
-                color: "#f1095d",
+                bg: "null",
               }}
             >
               {index + 1}
@@ -84,9 +87,7 @@ const Pagination = ({ placesLength, perPage, activePage, handlePageChange }: IPa
             "2xl": "block",
           }}
           _hover={{
-            bg: "#fff",
-            border: "4px double #f1095d",
-            color: "#f1095d",
+            bg: "null",
           }}
         >
           Next

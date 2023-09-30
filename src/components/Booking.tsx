@@ -5,15 +5,32 @@ import { useEffect, useState } from "react";
 import { Places } from "../utils/types";
 import { SinglePlace } from "./SinglePlace";
 
+let xxx = {
+  id: 0,
+  img: "",
+  city: "",
+  country: "",
+  type: "",
+  desc: "",
+  availability: "",
+  price: 0,
+  review: "",
+  rating: "",
+  host: "",
+  hostImg: "",
+  yOh: "",
+  hostTag: "",
+};
+
 export const Booking = () => {
   const { id } = useParams();
-  const data = useAppSelector((store) => store.placesReducer.data);
+  const place = useAppSelector((store) => store.placesReducer.places);
 
-  const [bookingProduct, setBookingProduct] = useState<Places>({});
+  const [bookingPlace, setBookingPlace] = useState<Places>(xxx);
 
   useEffect(() => {
-    const xBookingProduct: Places = data.find((el) => el.id === Number(id));
-    setBookingProduct(xBookingProduct);
+    const xBookingProduct: Places = place?.find((el) => el.id === Number(id));
+    setBookingPlace(xBookingProduct);
   }, []);
 
   return (
@@ -28,7 +45,7 @@ export const Booking = () => {
       }}
       minH={"100vh"}
     >
-      <SinglePlace {...bookingProduct} />
+      <SinglePlace {...bookingPlace} />
     </Box>
   );
 };

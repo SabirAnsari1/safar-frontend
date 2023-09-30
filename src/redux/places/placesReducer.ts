@@ -11,18 +11,23 @@ import {
 export interface IAppState {
   isLoading: boolean;
   isError: boolean;
+  errMessage: string;
   home: Home[];
-  data: Places[];
+  places: Places[];
 }
 
 const initialState = {
   isLoading: false,
   isError: false,
+  errMessage: "",
   home: new Array(),
-  data: new Array(),
+  places: new Array(),
 };
 
-const placesReducer = (state: IAppState = initialState, action: AppAction): IAppState => {
+const placesReducer = (
+  state: IAppState = initialState,
+  action: AppAction
+): IAppState => {
   const { type } = action;
 
   switch (type) {
@@ -39,7 +44,7 @@ const placesReducer = (state: IAppState = initialState, action: AppAction): IApp
     }
 
     case GET_PLACES_SUCCESS: {
-      return { ...state, isLoading: false, data: action.payload };
+      return { ...state, isLoading: false, places: action.payload };
     }
 
     case UPDATE_PLACES_SUCCESS: {

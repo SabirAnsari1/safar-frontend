@@ -1,4 +1,12 @@
-import { Box, Button, Table, TableContainer, Tbody, Td, Tr } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Tr,
+} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -16,7 +24,8 @@ interface BookingPreviewProps {
 }
 
 export const BookingPreview = () => {
-  const [bookingPreviewItems, setBookingPreviewItems] = useState<BookingPreviewProps>({});
+  const [bookingPreviewItems, setBookingPreviewItems] =
+    useState<BookingPreviewProps>({});
   const {
     checkin,
     checkout,
@@ -124,9 +133,7 @@ export const BookingPreview = () => {
             color={"#fff"}
             borderRadius={"0px 0px 5px 5px"}
             _hover={{
-              bg: "#fff",
-              border: "4px double #f1095d",
-              color: "#f1095d",
+              bg: "null",
             }}
           >
             Confirm Reservation

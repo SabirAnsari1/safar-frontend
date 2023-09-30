@@ -8,13 +8,13 @@ import { store } from "./redux/store.ts";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <ChakraProvider>
-        <BrowserRouter>
+    <ChakraProvider>
+      <BrowserRouter>
+        <Provider store={store}>
           <ColorModeScript initialColorMode="light" />
           <App />
-        </BrowserRouter>
-      </ChakraProvider>
-    </Provider>
+        </Provider>
+      </BrowserRouter>
+    </ChakraProvider>
   </React.StrictMode>
 );

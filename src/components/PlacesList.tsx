@@ -1,4 +1,12 @@
-import { Box, Flex, Text, Grid, Center, Stack, Skeleton } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Text,
+  Grid,
+  Center,
+  Stack,
+  Skeleton,
+} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../redux/store";
 import { getPlaces } from "../redux/places/action";
@@ -17,8 +25,11 @@ const skeleton: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 export const PlacesList = ({ str1, str2 }: PlacesListProp) => {
   const dispatch = useAppDispatch();
-  const { data, isLoading } = useAppSelector(
-    (store) => ({ data: store.placesReducer.data, isLoading: store.placesReducer.isLoading }),
+  const { places, isLoading } = useAppSelector(
+    (store) => ({
+      places: store.placesReducer.places,
+      isLoading: store.placesReducer.isLoading,
+    }),
     shallowEqual
   );
   const [activePage, setActivePage] = useState<number>(1);
@@ -135,14 +146,14 @@ export const PlacesList = ({ str1, str2 }: PlacesListProp) => {
             }}
             gap={"1rem"}
           >
-            {data?.map((el) => (
+            {places?.map((el) => (
               <PlacesCard key={el.id} {...el} />
             ))}
           </Grid>
 
           <Flex justifyContent="center" p={6}>
             <Pagination
-              placesLength={data?.length}
+              placesLength={places?.length}
               perPage={2}
               activePage={activePage}
               handlePageChange={handlePageChange}
