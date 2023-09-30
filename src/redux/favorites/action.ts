@@ -8,7 +8,7 @@ import {
 } from "../actionTypes";
 import { AppDispatch } from "../store";
 
-const URL = "https://safer.onrender.com";
+const URL = "https://safar-json-server-sabiransari1.onrender.com";
 
 export interface IFavRequest {
   type: typeof FAVORITE_FAILURE;

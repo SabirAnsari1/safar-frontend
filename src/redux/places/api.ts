@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Home, Places } from "../../utils/types";
 
-const URL = "https://safer.onrender.com";
+const URL = "https://safar-json-server-sabiransari1.onrender.com";
 
 export const getHomeAPI = async () => {
   try {
@@ -10,16 +10,27 @@ export const getHomeAPI = async () => {
   } catch (err) {}
 };
 
-export const getPlacesAPI = async (queryParams?: { params: { _page: number } }) => {
+export const getPlacesAPI = async (queryParams?: {
+  params: { _page: number };
+}) => {
   try {
-    const res: AxiosResponse<Places[]> = await axios.get(`${URL}/places`, queryParams);
+    const res: AxiosResponse<Places[]> = await axios.get(
+      `${URL}/places`,
+      queryParams
+    );
     return res.data;
   } catch (err) {}
 };
 
-export const updatePlacesAPI = async (id: number, payload: { title: string; price: number }) => {
+export const updatePlacesAPI = async (
+  id: number,
+  payload: { title: string; price: number }
+) => {
   try {
-    const res: AxiosResponse<Places> = await axios.patch(`${URL}/places/${id}`, payload);
+    const res: AxiosResponse<Places> = await axios.patch(
+      `${URL}/places/${id}`,
+      payload
+    );
     return res.data;
   } catch (err) {}
 };

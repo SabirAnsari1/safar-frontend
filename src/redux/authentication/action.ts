@@ -9,7 +9,7 @@ import axios from "axios";
 import { registerUser, loginUser } from "../../utils/types";
 import { AppDispatch } from "../store";
 
-const URL = "https://safer.onrender.com";
+const URL = "https://safar-json-server-sabiransari1.onrender.com";
 
 export interface IUserRequest {
   type: typeof USER_REQUEST;
