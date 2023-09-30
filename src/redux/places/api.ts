@@ -5,7 +5,7 @@ const URL = "https://safar-json-server-sabiransari1.onrender.com";
 
 export const getHomeAPI = async () => {
   try {
-    const res: AxiosResponse<Home[]> = await axios.get(`${URL}/homePage`);
+    const res: AxiosResponse<Home[]> = await axios.get(`${URL}/homepage`);
     return res.data;
   } catch (err) {}
 };
