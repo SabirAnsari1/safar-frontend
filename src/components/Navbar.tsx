@@ -18,12 +18,27 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { FaUser, FaUserSlash } from "react-icons/fa";
-import { useAppSelector } from "../redux/store";
+import { BiSolidLogInCircle, BiSolidLogOutCircle } from "react-icons/bi";
+import { useAppSelector, useAppDispatch } from "../redux/store";
+import { logout } from "../redux/authentication/action";
+import { shallowEqual } from "react-redux";
 
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const isAuth: boolean = useAppSelector((store) => store.authReducer.isAuth);
+  const { isAuth, existingUser } = useAppSelector(
+    (store) => ({
+      isAuth: store.authReducer.isAuth,
+      isLogout: store.authReducer.isLogout,
+      existingUser: store.authReducer.existingUser,
+    }),
+    shallowEqual
+  );
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout(existingUser.token));
+  };
 
   return (
     <Flex
@@ -205,17 +220,35 @@ export const Navbar = () => {
 
         {/* forth.2 */}
         <Box>
-          <Link to={"/login"}>
-            <IconButton
-              aria-label={"auth"}
-              icon={isAuth ? <FaUser /> : <FaUserSlash />}
-              size={"sm"}
-              isRound
-            />
-          </Link>
+          <IconButton
+            aria-label={"user"}
+            icon={isAuth ? <FaUser /> : <FaUserSlash />}
+            size={"sm"}
+            isRound
+          />
         </Box>
 
         {/* forth.3 */}
+        {isAuth ? (
+          <IconButton
+            aria-label={"auth"}
+            icon={<BiSolidLogOutCircle />}
+            size={"sm"}
+            isRound
+            onClick={() => handleLogout()}
+          />
+        ) : (
+          <Link to={"/login"}>
+            <IconButton
+              aria-label={"auth"}
+              size={"sm"}
+              icon={<BiSolidLogInCircle />}
+              isRound
+            />
+          </Link>
+        )}
+
+        {/* forth.4 */}
         <Box>
           <IconButton
             aria-label={"theme"}

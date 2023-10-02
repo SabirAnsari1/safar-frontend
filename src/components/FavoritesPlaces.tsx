@@ -12,10 +12,14 @@ import { Link } from "react-router-dom";
 import { Places } from "../utils/types";
 import { AiFillStar } from "react-icons/ai";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { deleteFav, getFavdata } from "../redux/favorites/action";
+import {
+  getFavoritesPlaces,
+  deleteFavoritePlace,
+} from "../redux/favorites/action";
 import { useAppDispatch } from "../redux/store";
 
 export const FavoritesPlaces = ({
+  _id,
   id,
   img,
   city,
@@ -23,16 +27,13 @@ export const FavoritesPlaces = ({
   desc,
   availability,
   price,
-
   rating,
 }: Places) => {
   const { colorMode } = useColorMode();
   const dispatch = useAppDispatch();
 
-  const handleDelete = (id?: number) => {
-    dispatch(deleteFav(id)).then((res) => {
-      dispatch(getFavdata());
-    });
+  const handleFavoriteDelete = (_id: string) => {
+    dispatch(deleteFavoritePlace(_id));
   };
 
   return (
@@ -57,7 +58,7 @@ export const FavoritesPlaces = ({
         {/* second */}
         <Box pos={"absolute"} top={"5%"} right={"7%"}>
           <Button
-            onClick={() => handleDelete(id)}
+            onClick={() => handleFavoriteDelete(_id)}
             bg={"none"}
             _hover={{ bg: "none" }}
           >

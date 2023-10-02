@@ -1,11 +1,13 @@
 import axios, { AxiosResponse } from "axios";
 import { Home, Places } from "../../utils/types";
 
-const URL = "https://safar-json-server-sabiransari1.onrender.com";
+const URL = "https://safar-server-sabiransari1.onrender.com";
 
 export const getHomeAPI = async () => {
   try {
-    const res: AxiosResponse<Home[]> = await axios.get(`${URL}/homepage`);
+    const res: AxiosResponse<Home[]> = await axios.get(
+      `${URL}/places/gethomeplaces`
+    );
     return res.data;
   } catch (err) {}
 };
@@ -15,7 +17,7 @@ export const getPlacesAPI = async (queryParams?: {
 }) => {
   try {
     const res: AxiosResponse<Places[]> = await axios.get(
-      `${URL}/places`,
+      `${URL}/places/getplaces`,
       queryParams
     );
     return res.data;

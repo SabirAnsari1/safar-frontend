@@ -20,7 +20,7 @@ import { useAppDispatch, useAppSelector } from "../redux/store";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import facebook from "../assets/images/facebook.png";
 import google from "../assets/images/google.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { login } from "../redux/authentication/action";
 import { shallowEqual } from "react-redux";
 
@@ -30,21 +30,29 @@ export const Login = () => {
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
   const toast = useToast();
-  const { isLoading, isError, errMessage, isAuth, users } = useAppSelector(
+  const { isLoading, isError, errMessage, isAuth, isLogout } = useAppSelector(
     (store) => ({
       isLoading: store.authReducer.isLoading,
       isError: store.authReducer.isError,
       errMessage: store.authReducer.errMessage,
       isAuth: store.authReducer.isAuth,
-      users: store.authReducer.users,
+      isLogout: store.authReducer.isLogout,
     }),
     shallowEqual
   );
-  const [loginUser, setLoginUser] = useState({});
+  const loction = useLocation();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    // dispatch(login);
-  }, []);
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const loginUser = {
+      email,
+      password,
+    };
+
+    dispatch(login(loginUser));
+  };
 
   useEffect(() => {
     {
@@ -62,20 +70,37 @@ export const Login = () => {
             status: "error",
             isClosable: true,
             position: "top",
+            duration: 2000,
+          })
+        : isAuth
+        ? toast({
+            title: `Login Successfull`,
+            status: "success",
+            isClosable: true,
+            position: "top",
+            duration: 1000,
+          })
+        : isLogout
+        ? toast({
+            title: `Logout Successfull`,
+            status: "info",
+            isClosable: true,
+            position: "top",
             duration: 1000,
           })
         : "";
     }
-  }, [isLoading, isError]);
+  }, [isLoading, isError, isAuth, isLogout]);
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  useEffect(() => {
+    isAuth && navigate(loction.state, { replace: true });
+    setEmail("");
+    setPassword("");
+  }, [isAuth]);
 
-    const loginUser = {
-      email,
-      password,
-    };
-  };
+  useEffect(() => {
+    localStorage.removeItem("token");
+  }, [isLogout]);
 
   return (
     <Flex minW={"100wh"} minH={"100vh"} justify={"center"} align={"center"}>
@@ -106,6 +131,7 @@ export const Login = () => {
                   placeholder="Email"
                   variant={"filled"}
                   borderRadius={"5px 5px 0px 0px"}
+                  isRequired
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -115,6 +141,7 @@ export const Login = () => {
                     placeholder="Password"
                     borderRadius={"0px"}
                     variant="filled"
+                    isRequired
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -142,7 +169,7 @@ export const Login = () => {
                   }}
                   type="submit"
                 >
-                  Signup
+                  Login
                 </Button>
                 <Center>
                   <Text>

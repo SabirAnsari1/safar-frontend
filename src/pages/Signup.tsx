@@ -72,7 +72,7 @@ export const Signup = () => {
             status: "error",
             isClosable: true,
             position: "top",
-            duration: 1000,
+            duration: 2000,
           })
         : isRegistered
         ? toast({
@@ -124,6 +124,7 @@ export const Signup = () => {
                   placeholder="First Name"
                   variant={"filled"}
                   borderRadius={"5px 5px 0px 0px"}
+                  isRequired
                   value={firstname}
                   onChange={(e) => setFirstname(e.target.value)}
                 />
@@ -132,6 +133,7 @@ export const Signup = () => {
                   placeholder="Last Name"
                   variant={"filled"}
                   borderRadius={"0px"}
+                  isRequired
                   value={lastname}
                   onChange={(e) => setLastname(e.target.value)}
                 />
@@ -140,6 +142,7 @@ export const Signup = () => {
                   placeholder="Phone Number"
                   variant={"filled"}
                   borderRadius={"0px"}
+                  isRequired
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
@@ -148,6 +151,7 @@ export const Signup = () => {
                   placeholder="Email"
                   variant={"filled"}
                   borderRadius={"0px"}
+                  isRequired
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -157,6 +161,7 @@ export const Signup = () => {
                     placeholder="Password"
                     borderRadius={"0px"}
                     variant="filled"
+                    isRequired
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />

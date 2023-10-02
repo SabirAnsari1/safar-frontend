@@ -1,62 +1,82 @@
 import axios from "axios";
 import { Places } from "../../utils/types";
 import {
-  DELETE_FAVORITE,
-  FAVORITE_FAILURE,
   FAVORITE_REQUEST,
-  GET_FAVORITE_SUCCESS,
+  FAVORITE_FAILURE,
+  GET_FAVORITES_SUCCESS,
+  ADD_FAVORITE_SUCCESS,
+  DELETE_FAVORITE_SUCCESS,
+  RESET_FAVORITE_INITIALSTATE,
 } from "../actionTypes";
 import { AppDispatch } from "../store";
 
 const URL = "https://safar-json-server-sabiransari1.onrender.com";
 
-export interface IFavRequest {
-  type: typeof FAVORITE_FAILURE;
-}
-
-export interface IFavError {
+export interface IFavoriteRequest {
   type: typeof FAVORITE_REQUEST;
 }
-export interface IFavSuccess {
-  type: typeof GET_FAVORITE_SUCCESS;
+
+export interface IFavoriteError {
+  type: typeof FAVORITE_FAILURE;
+  payload: string;
+}
+export interface IFavoriteGetSuccess {
+  type: typeof GET_FAVORITES_SUCCESS;
   payload: Places[];
 }
-export interface IFavDelete {
-  type: typeof DELETE_FAVORITE;
-}
-export type FavoriteAction = IFavRequest | IFavError | IFavSuccess | IFavDelete;
 
-export const getFavdata = () => (dispatch: AppDispatch) => {
+export interface IFavoriteAddSuccess {
+  type: typeof ADD_FAVORITE_SUCCESS;
+}
+
+export interface IFavoriteDeleteSuccess {
+  type: typeof DELETE_FAVORITE_SUCCESS;
+}
+
+export interface IFavoriteResetInitialstate {
+  type: typeof RESET_FAVORITE_INITIALSTATE;
+}
+
+export type FavoriteAction =
+  | IFavoriteRequest
+  | IFavoriteError
+  | IFavoriteGetSuccess
+  | IFavoriteAddSuccess
+  | IFavoriteDeleteSuccess
+  | IFavoriteResetInitialstate;
+
+export const getFavoritesPlaces = (dispatch: AppDispatch) => {
   dispatch({ type: FAVORITE_REQUEST });
   axios
-    .get(`${URL}/favourite`)
+    .get(`${URL}/favourites/favouritesplaces`)
     .then((res) => {
-      dispatch({ type: GET_FAVORITE_SUCCESS, payload: res.data });
+      dispatch({ type: GET_FAVORITES_SUCCESS, payload: res.data });
     })
-    .catch(() => dispatch({ type: FAVORITE_FAILURE }));
+    .catch((err) => dispatch({ type: FAVORITE_FAILURE, payload: err.message }));
 };
 
-export const postSingleProductItem = (obj: any) => (dispatch: AppDispatch) => {
+export const addFavoritePlace = (_id: string) => (dispatch: AppDispatch) => {
   dispatch({ type: FAVORITE_REQUEST });
-  return axios
-    .post(`${URL}/favourite`, obj)
+  axios
+    .post(`${URL}/favourites/addtofavourite/${_id}`)
     .then(() => {
-      // console.log(res);
+      dispatch({ type: ADD_FAVORITE_SUCCESS });
     })
-    .catch(() => dispatch({ type: FAVORITE_FAILURE }));
+    .catch((err) => dispatch({ type: FAVORITE_FAILURE, payload: err.message }));
 };
-// export const deleteFav = (data: Places[]) => (dispatch: AppDispatch) => {
-//   dispatch({ type: DELETE_FAV, payload: data });
-// };
 
-export const deleteFav = (id: number) => (dispatch: AppDispatch) => {
+export const deleteFavoritePlace = (_id: string) => (dispatch: AppDispatch) => {
   dispatch({ type: FAVORITE_REQUEST });
   return axios
-    .delete(`${URL}/favourite/${id}`)
+    .delete(`${URL}/favourites/deletefavourite/${_id}`)
     .then(() => {
-      dispatch({ type: DELETE_FAVORITE });
+      dispatch({ type: DELETE_FAVORITE_SUCCESS });
     })
-    .catch(() => {
-      dispatch({ type: FAVORITE_REQUEST });
+    .catch((err) => {
+      dispatch({ type: FAVORITE_FAILURE, payload: err.message });
     });
+};
+
+export const resetInitialstate = (dispatch: AppDispatch) => {
+  dispatch({ type: RESET_FAVORITE_INITIALSTATE });
 };

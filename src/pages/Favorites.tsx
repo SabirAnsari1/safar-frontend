@@ -4,7 +4,7 @@ import { FavoritesPlaces } from "../components/FavoritesPlaces";
 import { Places } from "../utils/types";
 
 export const Favorites = () => {
-  const favorite = useAppSelector((store) => store.favoriteReducer.favorite);
+  const favorites = useAppSelector((store) => store.favoriteReducer.favorites);
 
   return (
     <Box
@@ -18,7 +18,7 @@ export const Favorites = () => {
         "2xl": "2rem 5rem",
       }}
     >
-      {favorite.length === 0 ? (
+      {favorites.length === 0 ? (
         <Center>
           <Heading>Favourite is empty.</Heading>
         </Center>
@@ -34,7 +34,7 @@ export const Favorites = () => {
           }}
           gap={"1rem"}
         >
-          {favorite?.map((el: Places) => (
+          {favorites?.map((el: Places) => (
             <FavoritesPlaces key={el.id} {...el} />
           ))}
         </Grid>

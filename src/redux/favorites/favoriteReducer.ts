@@ -1,21 +1,28 @@
 import { Places } from "../../utils/types";
 import {
-  DELETE_FAVORITE,
-  FAVORITE_FAILURE,
   FAVORITE_REQUEST,
-  GET_FAVORITE_SUCCESS,
+  FAVORITE_FAILURE,
+  GET_FAVORITES_SUCCESS,
+  ADD_FAVORITE_SUCCESS,
+  DELETE_FAVORITE_SUCCESS,
+  RESET_FAVORITE_INITIALSTATE,
 } from "../actionTypes";
 import { FavoriteAction } from "./action";
 
 export interface IFavoriteState {
   isLoading: boolean;
   isError: boolean;
-  favorite: Places[];
+  errMessage: string;
+  isfavorite: boolean;
+  favorites: Places[];
 }
+
 const initialState = {
   isLoading: false,
   isError: false,
-  favorite: new Array(),
+  errMessage: "",
+  isfavorite: false,
+  favorites: new Array(),
 };
 
 export const favoriteReducer = (
@@ -28,15 +35,34 @@ export const favoriteReducer = (
     }
 
     case FAVORITE_FAILURE: {
-      return { ...state, isLoading: false, isError: true };
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        errMessage: action.payload,
+      };
     }
 
-    case GET_FAVORITE_SUCCESS: {
+    case GET_FAVORITES_SUCCESS: {
       return { ...state, isLoading: false, favorite: action.payload };
     }
 
-    case DELETE_FAVORITE: {
-      return { ...state, isLoading: false };
+    case ADD_FAVORITE_SUCCESS: {
+      return { ...state, isLoading: false, isfavorite: true };
+    }
+
+    case DELETE_FAVORITE_SUCCESS: {
+      return { ...state, isLoading: false, isError: false };
+    }
+
+    case RESET_FAVORITE_INITIALSTATE: {
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        errMessage: "",
+        isfavorite: false,
+      };
     }
 
     default:

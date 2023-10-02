@@ -8,7 +8,8 @@ export interface Home {
 }
 
 export interface Places {
-  id: number;
+  _id: string;
+  id?: number;
   img: string;
   city: string;
   country: string;
@@ -18,10 +19,6 @@ export interface Places {
   price: number;
   review: string;
   rating: string;
-  host: string;
-  hostImg: string;
-  yOh: string;
-  hostTag: string;
 }
 
 export interface registerUser {
@@ -33,7 +30,8 @@ export interface registerUser {
 }
 
 export interface loginUser {
+  msg: string;
+  token: string;
+  username: string;
   email: string;
-  password: string;
-  phone: string;
 }

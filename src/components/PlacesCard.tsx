@@ -14,10 +14,12 @@ import { AiFillStar } from "react-icons/ai";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/store";
-import { getFavdata, postSingleProductItem } from "../redux/favorites/action";
-import { useState } from "react";
+import { addFavoritePlace, resetInitialstate } from "../redux/favorites/action";
+import { useEffect } from "react";
+import { shallowEqual } from "react-redux";
 
 export const PlacesCard = ({
+  _id,
   id,
   img,
   city,
@@ -28,34 +30,58 @@ export const PlacesCard = ({
   price,
   review,
   rating,
-  host,
-  hostImg,
-  yOh,
-  hostTag,
 }: Places) => {
   const { colorMode } = useColorMode();
-
   const dispatch = useAppDispatch();
   const toast = useToast();
-  const places = useAppSelector((store) => store.placesReducer.data);
-  const [state, setState] = useState<boolean>(false);
+  const { isLoading, isError, errMessage, isfavorite } = useAppSelector(
+    (store) => ({
+      isLoading: store.placesReducer.isLoading,
+      isError: store.favoriteReducer.isError,
+      errMessage: store.favoriteReducer.errMessage,
+      isfavorite: store.favoriteReducer.isfavorite,
+    }),
+    shallowEqual
+  );
 
-  const handleAdd = () => {
-    let d = places.find((el) => el.id === id);
-    // console.log(d);
-    dispatch(postSingleProductItem({ ...d, quantity: 1 })).then((res: any) => {
-      dispatch(getFavdata());
-      toast({
-        // title: "Yay!!",
-        description: "The place has been added to favourites",
-        status: "success",
-        duration: 4000,
-        position: "top",
-        isClosable: true,
-      });
-      setState(true);
-    });
+  const handleAddFavorite = (_id: string) => {
+    dispatch(addFavoritePlace(_id));
   };
+
+  useEffect(() => {
+    {
+      isLoading
+        ? toast({
+            title: `Loading...`,
+            status: "loading",
+            isClosable: true,
+            position: "top",
+            duration: 500,
+          })
+        : isError
+        ? toast({
+            title: `${errMessage}`,
+            status: "error",
+            isClosable: true,
+            position: "top",
+            duration: 1000,
+          })
+        : isfavorite
+        ? toast({
+            title: `Product Added Successfully`,
+            status: "success",
+            isClosable: true,
+            position: "top",
+            duration: 1000,
+          })
+        : "";
+    }
+  }, [isLoading, isError, isfavorite]);
+
+  useEffect(() => {
+    dispatch(resetInitialstate);
+  }, [isfavorite]);
+
   return (
     <Grid borderRadius="5px" w={"100%"} pos={"relative"}>
       {/* first */}
@@ -76,9 +102,9 @@ export const PlacesCard = ({
 
       {/* second */}
       <Box pos={"absolute"} top={"5%"} right={"7%"}>
-        {!state ? (
+        {!isfavorite ? (
           <Button
-            onClick={handleAdd}
+            onClick={() => handleAddFavorite(_id)}
             background={"none"}
             _hover={{ bg: "none" }}
           >

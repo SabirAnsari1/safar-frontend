@@ -1,9 +1,10 @@
-import { registerUser } from "../../utils/types";
+import { loginUser } from "../../utils/types";
 import {
   USER_REQUEST,
   USER_FAILURE,
   USER_LOGIN_SUCCESS,
   USER_REGISTER_SUCCESS,
+  USER_LOGOUT_SUCCESS,
   RESET_REGISTER_INITIALSTATE,
 } from "../actionTypes";
 import { AuthAction } from "./action";
@@ -14,7 +15,8 @@ export interface AuthState {
   errMessage: string;
   isAuth: boolean;
   isRegistered: boolean;
-  users: registerUser[];
+  existingUser: loginUser;
+  isLogout: boolean;
 }
 
 const initialState = {
@@ -23,13 +25,11 @@ const initialState = {
   errMessage: "",
   isAuth: false,
   isRegistered: false,
-  users: new Array(),
+  existingUser: new Object(),
+  isLogout: false,
 };
 
-export const authReducer = (
-  state: AuthState = initialState,
-  action: AuthAction
-) => {
+export const authReducer = (state = initialState, action: AuthAction) => {
   switch (action.type) {
     case USER_REQUEST: {
       return {
@@ -38,6 +38,7 @@ export const authReducer = (
         isError: false,
         isAuth: false,
         isRegistered: false,
+        isLogout: false,
       };
     }
 
@@ -57,7 +58,7 @@ export const authReducer = (
         ...state,
         isLoading: false,
         isAuth: true,
-        users: action.payload,
+        existingUser: action.payload,
       };
     }
 
@@ -77,6 +78,18 @@ export const authReducer = (
         isAuth: false,
         isRegistered: false,
         errMessage: "",
+        isLogout: false,
+      };
+    }
+
+    case USER_LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        isAuth: false,
+        token: "",
+        existingUser: new Object(),
+        isLogout: true,
       };
     }
     default:
