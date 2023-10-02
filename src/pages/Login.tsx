@@ -142,7 +142,7 @@ export const Login = () => {
                   }}
                   type="submit"
                 >
-                  Signup
+                  Login
                 </Button>
                 <Center>
                   <Text>
