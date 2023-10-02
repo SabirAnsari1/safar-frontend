@@ -2,11 +2,6 @@
 
 Welcome to SAFAR, an online hotel booking platform that allows users to book hotels all over the world. With SAFAR, users can easily manage their holidays and events, helping them feel enthusiastic and relaxed. We're excited to have you here and look forward to your contributions!
 
-## It is a Collaborative Project
-Collaborators
-- Sabir Ansari (Team-Lead)
-- Juri Kalita
-
 ## Tech Stack
 In this project, we utilize the following technologies:
 
