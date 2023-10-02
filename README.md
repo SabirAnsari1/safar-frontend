@@ -2,13 +2,8 @@
 
 Welcome to SAFAR, an online hotel booking platform that allows users to book hotels all over the world. With SAFAR, users can easily manage their holidays and events, helping them feel enthusiastic and relaxed. We're excited to have you here and look forward to your contributions!
 
-## It is a Collaborative Project
-Collaborators
-- Sabir Ansari (Team-Lead)
-- Juri Kalita
-
 ## Tech Stack
-In this project, we utilize the following technologies:
+In this project, I have utilized the following technologies:
 
 1. HTML5
 2. CSS3
@@ -21,7 +16,7 @@ In this project, we utilize the following technologies:
 9. Chakra UI
 
 ## Contributing
-We welcome and appreciate all contributions to SAFAR! Whether you want to report a bug, contribute code, provide suggestions, or improve the documentation, there are several ways you can get involved:
+Welcome and appreciate all contributions to SAFAR! Whether you want to report a bug, contribute code, provide suggestions, or improve the documentation, there are several ways you can get involved:
 
 ## Instructions
 To contribute to SAFAR, follow these steps:
