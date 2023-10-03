@@ -17,7 +17,10 @@ interface PlacesFunctionalityProps {
   setQuery: (query: string) => void;
 }
 
-export const PlacesFunctionality = ({ query, setQuery }: PlacesFunctionalityProps) => {
+export const PlacesFunctionality = ({
+  query,
+  setQuery,
+}: PlacesFunctionalityProps) => {
   const [_, setSearchParams] = useSearchParams();
   const [residency, setResidency] = useState<string>("");
   const [order, setOrder] = useState<string>("");
@@ -56,7 +59,11 @@ export const PlacesFunctionality = ({ query, setQuery }: PlacesFunctionalityProp
       >
         <InputGroup>
           <InputLeftElement>
-            <IconButton aria-label={"search"} icon={<MdSearch />} cursor={"default"} />
+            <IconButton
+              aria-label={"search"}
+              icon={<MdSearch />}
+              cursor={"default"}
+            />
           </InputLeftElement>
           <Input
             type="text"
@@ -93,6 +100,7 @@ export const PlacesFunctionality = ({ query, setQuery }: PlacesFunctionalityProp
           xl: "row",
           "2xl": "row",
         }}
+        gap={".5rem"}
       >
         <Box>
           <Select

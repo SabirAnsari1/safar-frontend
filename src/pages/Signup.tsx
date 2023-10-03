@@ -99,7 +99,17 @@ export const Signup = () => {
     <Flex minW={"100wh"} minH={"100vh"} justify={"center"} align={"center"}>
       <Flex w={"80%"} h={"80%"} justify={"center"} align={"center"}>
         {isRegistered && <Navigate to="/login" replace />}
-        <Box w={"50%"} p={"1rem"}>
+        <Box
+          w={{
+            base: "100%",
+            sm: "100%",
+            md: "70%",
+            lg: "50%",
+            xl: "50%",
+            "2xl": "50%",
+          }}
+          p={"1rem"}
+        >
           <form onSubmit={handleRegister}>
             <FormControl>
               <VStack spacing={"1rem"}>

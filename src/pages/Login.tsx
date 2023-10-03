@@ -105,7 +105,17 @@ export const Login = () => {
   return (
     <Flex minW={"100wh"} minH={"100vh"} justify={"center"} align={"center"}>
       <Flex w={"80%"} h={"80%"} justify={"center"} align={"center"}>
-        <Box w={"50%"} p={"1rem"}>
+        <Box
+          w={{
+            base: "100%",
+            sm: "100%",
+            md: "70%",
+            lg: "50%",
+            xl: "50%",
+            "2xl": "50%",
+          }}
+          p={"1rem"}
+        >
           {/* <FormControl> */}
           <form onSubmit={handleLogin}>
             <FormControl>
