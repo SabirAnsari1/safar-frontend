@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../redux/store";
 import { Box, Grid, Heading, Center } from "@chakra-ui/react";
-import { FavoritesPlaces } from "../components/FavoritesPlaces";
+import { FavoritesPlacesCard } from "../components/FavoritesPlacesCard";
 import { Places } from "../utils/types";
 import { getFavoritesPlaces } from "../redux/favorites/action";
 
@@ -42,7 +42,7 @@ export const Favorites = () => {
           gap={"1rem"}
         >
           {favorites?.map((el: Places) => (
-            <FavoritesPlaces key={el._id} {...el} />
+            <FavoritesPlacesCard key={el._id} {...el} />
           ))}
         </Grid>
       )}

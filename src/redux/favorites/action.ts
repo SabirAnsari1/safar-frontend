@@ -66,7 +66,6 @@ export const getFavoritesPlaces = (dispatch: AppDispatch) => {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
       dispatch({ type: GET_FAVORITES_SUCCESS, payload: res });
     })
     .catch((err) => dispatch({ type: FAVORITE_FAILURE, payload: err.message }));

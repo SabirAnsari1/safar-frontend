@@ -15,7 +15,7 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { deleteFavoritePlace } from "../redux/favorites/action";
 import { useAppDispatch } from "../redux/store";
 
-export const FavoritesPlaces = ({
+export const FavoritesPlacesCard = ({
   _id,
   img,
   city,
