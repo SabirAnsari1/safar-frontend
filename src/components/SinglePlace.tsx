@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import {
   Text,
   Image,
@@ -19,6 +19,7 @@ import {
   Input,
   ModalFooter,
   Center,
+  useToast,
 } from "@chakra-ui/react";
 import { Places } from "../utils/types";
 import { AiFillStar } from "react-icons/ai";
@@ -82,7 +83,7 @@ const guestsReducer = (state: any, { type, payload }: any) => {
 };
 
 export const SinglePlace = ({
-  id,
+  _id,
   img,
   city,
   country,
@@ -92,15 +93,12 @@ export const SinglePlace = ({
   price,
   review,
   rating,
-  host,
-  hostImg,
-  yOh,
-  hostTag,
 }: Places) => {
   const { colorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [state, dispatch] = useReducer(guestsReducer, initGuests);
   const { checkin, checkout, adults, children, infants, rooms } = state;
+  const toast = useToast();
 
   const handleBookingPreview = () => {
     const bookingPreview = { ...state, city, country, type, price };
@@ -215,6 +213,7 @@ export const SinglePlace = ({
               <FormLabel fontWeight={"bold"}>Check in date</FormLabel>
               <Input
                 type="date"
+                isRequired
                 onChange={(e) =>
                   dispatch({ type: "CHECK_IN", payload: e.target.value })
                 }
@@ -225,6 +224,7 @@ export const SinglePlace = ({
               <FormLabel fontWeight={"bold"}>Check out date</FormLabel>
               <Input
                 type="date"
+                isRequired
                 onChange={(e) =>
                   dispatch({ type: "CHECK_OUT", payload: e.target.value })
                 }
@@ -355,6 +355,12 @@ export const SinglePlace = ({
                     bg: "null",
                   }}
                   onClick={handleBookingPreview}
+                  isDisabled={
+                    checkin.length === 0 ||
+                    checkout.length === 0 ||
+                    adults === 0 ||
+                    rooms === 0
+                  }
                 >
                   Booking Preview
                 </Button>

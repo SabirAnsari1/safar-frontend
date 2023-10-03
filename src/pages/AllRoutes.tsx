@@ -33,7 +33,7 @@ export const AllRoutes = () => {
       />
       <Route path={"/places"} element={<Places />} />
       <Route
-        path={"/booking/:id"}
+        path={"/booking/:_id"}
         element={
           <PrivateRoute>
             <Booking />

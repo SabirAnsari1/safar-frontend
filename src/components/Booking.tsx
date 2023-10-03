@@ -6,7 +6,7 @@ import { Places } from "../utils/types";
 import { SinglePlace } from "./SinglePlace";
 
 let xxx = {
-  id: 0,
+  _id: "",
   img: "",
   city: "",
   country: "",
@@ -19,13 +19,12 @@ let xxx = {
 };
 
 export const Booking = () => {
-  const { id } = useParams();
-  const place = useAppSelector((store) => store.placesReducer.places);
-
+  const { _id } = useParams();
+  const places = useAppSelector((store) => store.placesReducer.places);
   const [bookingPlace, setBookingPlace] = useState<Places>(xxx);
 
   useEffect(() => {
-    const xBookingProduct: Places = place?.find((el) => el.id === Number(id));
+    const xBookingProduct: Places = places?.find((el) => el._id === _id);
     setBookingPlace(xBookingProduct);
   }, []);
 
