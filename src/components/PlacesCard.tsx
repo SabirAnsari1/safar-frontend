@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Text,
   Grid,
@@ -15,34 +16,32 @@ import { BsFillSuitHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { addFavoritePlace, favoriteResetFunc } from "../redux/favorites/action";
-import { useEffect } from "react";
 import { shallowEqual } from "react-redux";
 
 export const PlacesCard = ({
   _id,
-  id,
   img,
   city,
   country,
-  type,
   desc,
+  type,
   availability,
-  price,
   review,
+  price,
   rating,
 }: Places) => {
   const { colorMode } = useColorMode();
   const dispatch = useAppDispatch();
+  const { isLoading, isError, errMessage, isfavorite } = useAppSelector(
+    (store) => ({
+      isLoading: store.favoriteReducer.isLoading,
+      isError: store.favoriteReducer.isError,
+      errMessage: store.favoriteReducer.errMessage,
+      isfavorite: store.favoriteReducer.isfavorite,
+    }),
+    shallowEqual
+  );
   const toast = useToast();
-  // const { isLoading, isError, errMessage, isfavorite } = useAppSelector(
-  //   (store) => ({
-  //     isLoading: store.favoriteReducer.isLoading,
-  //     isError: store.favoriteReducer.isError,
-  //     errMessage: store.favoriteReducer.errMessage,
-  //     isfavorite: store.favoriteReducer.isfavorite,
-  //   }),
-  //   shallowEqual
-  // );
 
   const handleAddFavorite = (_id: string) => {
     dispatch(addFavoritePlace(_id));
@@ -102,7 +101,7 @@ export const PlacesCard = ({
 
       {/* second */}
       <Box pos={"absolute"} top={"5%"} right={"7%"}>
-        {/* {isfavorite ? (
+        {isfavorite ? (
           <Button bg={"none"} _hover={{ bg: "none" }}>
             <Icon
               aria-label="favorite"
@@ -110,19 +109,19 @@ export const PlacesCard = ({
               color={"#dc2e6d"}
             />
           </Button>
-        ) : ( */}
-        <Button
-          onClick={() => handleAddFavorite(_id)}
-          background={"none"}
-          _hover={{ bg: "none" }}
-        >
-          <Icon
-            aria-label="favorite"
-            as={BsFillSuitHeartFill}
-            color={"white"}
-          />
-        </Button>
-        {/* )} */}
+        ) : (
+          <Button
+            onClick={() => handleAddFavorite(_id)}
+            background={"none"}
+            _hover={{ bg: "none" }}
+          >
+            <Icon
+              aria-label="favorite"
+              as={BsFillSuitHeartFill}
+              color={"white"}
+            />
+          </Button>
+        )}
       </Box>
 
       {/* third */}
@@ -164,21 +163,7 @@ export const PlacesCard = ({
       <Text>₹ {price}</Text>
 
       {/* seventh */}
-      {/* {availability === "unavailable" ? (
-        <Button
-          w={"100%"}
-          bgColor={"#f1095d"}
-          mt={".3rem"}
-          color={"white"}
-          isDisabled={availability === "unavailable"}
-          _hover={{
-            bg: "null",
-          }}
-        >
-          Book Now
-        </Button>
-      ) : ( */}
-      <Link to={`/booking/${id}`}>
+      <Link to={`/booking/${_id}`}>
         <Button
           w={"100%"}
           bgColor={"#f1095d"}
@@ -192,7 +177,6 @@ export const PlacesCard = ({
           Book Now
         </Button>
       </Link>
-      {/* )} */}
     </Grid>
   );
 };

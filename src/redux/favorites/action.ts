@@ -111,7 +111,7 @@ export const addFavoritePlace = (_id: string) => (dispatch: AppDispatch) => {
 
 export const deleteFavoritePlace = (_id: string) => (dispatch: AppDispatch) => {
   dispatch({ type: FAVORITE_REQUEST });
-  fetch(`${URL}/favourites/deletefavourite/${_id}`, {
+  return fetch(`${URL}/favourites/deletefavourite/${_id}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",

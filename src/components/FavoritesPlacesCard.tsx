@@ -12,7 +12,10 @@ import { Link } from "react-router-dom";
 import { Places } from "../utils/types";
 import { AiFillStar } from "react-icons/ai";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { deleteFavoritePlace } from "../redux/favorites/action";
+import {
+  deleteFavoritePlace,
+  getFavoritesPlaces,
+} from "../redux/favorites/action";
 import { useAppDispatch } from "../redux/store";
 
 export const FavoritesPlacesCard = ({
@@ -29,7 +32,9 @@ export const FavoritesPlacesCard = ({
   const dispatch = useAppDispatch();
 
   const handleFavoriteDelete = (_id: string) => {
-    dispatch(deleteFavoritePlace(_id));
+    dispatch(deleteFavoritePlace(_id)).then((res) =>
+      dispatch(getFavoritesPlaces)
+    );
   };
 
   return (

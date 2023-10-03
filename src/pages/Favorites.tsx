@@ -6,8 +6,8 @@ import { Places } from "../utils/types";
 import { getFavoritesPlaces } from "../redux/favorites/action";
 
 export const Favorites = () => {
-  const favorites = useAppSelector((store) => store.favoriteReducer.favorites);
   const dispatch = useAppDispatch();
+  const favorites = useAppSelector((store) => store.favoriteReducer.favorites);
 
   useEffect(() => {
     dispatch(getFavoritesPlaces);
