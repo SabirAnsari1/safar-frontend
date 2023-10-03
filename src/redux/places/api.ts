@@ -13,8 +13,6 @@ export const getHomeAPI = async () => {
 };
 
 export const getPlacesAPI = async (queryParams: object) => {
-  console.log(queryParams);
-
   try {
     const res: AxiosResponse<Places[]> = await axios.get(
       `${URL}/places/getplaces`,
