@@ -20,13 +20,14 @@ import { BsFillSuitHeartFill } from "react-icons/bs";
 import { FaUser, FaUserSlash } from "react-icons/fa";
 import { BiSolidLogInCircle, BiSolidLogOutCircle } from "react-icons/bi";
 import { useAppSelector, useAppDispatch } from "../redux/store";
-import { logout } from "../redux/authentication/action";
+import { logout, userRegisterResetFunc } from "../redux/authentication/action";
 import { shallowEqual } from "react-redux";
+import { useEffect } from "react";
 
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isAuth, existingUser } = useAppSelector(
+  const { isAuth, existingUser, isLogout } = useAppSelector(
     (store) => ({
       isAuth: store.authReducer.isAuth,
       isLogout: store.authReducer.isLogout,
@@ -39,6 +40,10 @@ export const Navbar = () => {
   const handleLogout = () => {
     dispatch(logout(existingUser.token));
   };
+
+  useEffect(() => {
+    isLogout && dispatch(userRegisterResetFunc);
+  }, [isLogout]);
 
   return (
     <Flex

@@ -14,7 +14,7 @@ import { AiFillStar } from "react-icons/ai";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/store";
-import { addFavoritePlace, resetInitialstate } from "../redux/favorites/action";
+import { addFavoritePlace, favoriteResetFunc } from "../redux/favorites/action";
 import { useEffect } from "react";
 import { shallowEqual } from "react-redux";
 
@@ -34,53 +34,53 @@ export const PlacesCard = ({
   const { colorMode } = useColorMode();
   const dispatch = useAppDispatch();
   const toast = useToast();
-  const { isLoading, isError, errMessage, isfavorite } = useAppSelector(
-    (store) => ({
-      isLoading: store.placesReducer.isLoading,
-      isError: store.favoriteReducer.isError,
-      errMessage: store.favoriteReducer.errMessage,
-      isfavorite: store.favoriteReducer.isfavorite,
-    }),
-    shallowEqual
-  );
+  // const { isLoading, isError, errMessage, isfavorite } = useAppSelector(
+  //   (store) => ({
+  //     isLoading: store.favoriteReducer.isLoading,
+  //     isError: store.favoriteReducer.isError,
+  //     errMessage: store.favoriteReducer.errMessage,
+  //     isfavorite: store.favoriteReducer.isfavorite,
+  //   }),
+  //   shallowEqual
+  // );
 
   const handleAddFavorite = (_id: string) => {
     dispatch(addFavoritePlace(_id));
   };
 
-  useEffect(() => {
-    {
-      isLoading
-        ? toast({
-            title: `Loading...`,
-            status: "loading",
-            isClosable: true,
-            position: "top",
-            duration: 500,
-          })
-        : isError
-        ? toast({
-            title: `${errMessage}`,
-            status: "error",
-            isClosable: true,
-            position: "top",
-            duration: 1000,
-          })
-        : isfavorite
-        ? toast({
-            title: `Product Added Successfully`,
-            status: "success",
-            isClosable: true,
-            position: "top",
-            duration: 1000,
-          })
-        : "";
-    }
-  }, [isLoading, isError, isfavorite]);
+  // useEffect(() => {
+  //   {
+  //     isLoading
+  //       ? toast({
+  //           title: `Loading...`,
+  //           status: "loading",
+  //           isClosable: true,
+  //           position: "top",
+  //           duration: 500,
+  //         })
+  //       : isError
+  //       ? toast({
+  //           title: `${errMessage}`,
+  //           status: "error",
+  //           isClosable: true,
+  //           position: "top",
+  //           duration: 1000,
+  //         })
+  //       : isfavorite
+  //       ? toast({
+  //           title: `Favorite Place Added Successfully`,
+  //           status: "success",
+  //           isClosable: true,
+  //           position: "top",
+  //           duration: 1000,
+  //         })
+  //       : "";
+  //   }
+  // }, [isLoading, isError, isfavorite]);
 
-  useEffect(() => {
-    dispatch(resetInitialstate);
-  }, [isfavorite]);
+  // useEffect(() => {
+  //   isfavorite && dispatch(favoriteResetFunc);
+  // }, [isfavorite]);
 
   return (
     <Grid borderRadius="5px" w={"100%"} pos={"relative"}>
@@ -102,19 +102,7 @@ export const PlacesCard = ({
 
       {/* second */}
       <Box pos={"absolute"} top={"5%"} right={"7%"}>
-        {!isfavorite ? (
-          <Button
-            onClick={() => handleAddFavorite(_id)}
-            background={"none"}
-            _hover={{ bg: "none" }}
-          >
-            <Icon
-              aria-label="favorite"
-              as={BsFillSuitHeartFill}
-              color={"white"}
-            />
-          </Button>
-        ) : (
+        {/* {isfavorite ? (
           <Button bg={"none"} _hover={{ bg: "none" }}>
             <Icon
               aria-label="favorite"
@@ -122,7 +110,19 @@ export const PlacesCard = ({
               color={"#dc2e6d"}
             />
           </Button>
-        )}
+        ) : ( */}
+        <Button
+          onClick={() => handleAddFavorite(_id)}
+          background={"none"}
+          _hover={{ bg: "none" }}
+        >
+          <Icon
+            aria-label="favorite"
+            as={BsFillSuitHeartFill}
+            color={"white"}
+          />
+        </Button>
+        {/* )} */}
       </Box>
 
       {/* third */}

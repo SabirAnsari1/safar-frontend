@@ -120,10 +120,6 @@ export const signup =
     }
   };
 
-export const userRegisterResetFunc = (dispatch: AppDispatch) => {
-  dispatch({ type: RESET_REGISTER_INITIALSTATE });
-};
-
 // export const logout = (token: string) => async (dispatch: AppDispatch) => {
 //   try {
 //     dispatch({ type: USER_REQUEST });
@@ -161,4 +157,8 @@ export const logout = (token: string) => (dispatch: AppDispatch) => {
           err.response.status === 404 ? err.message : err.response.data.msg,
       })
     );
+};
+
+export const userRegisterResetFunc = (dispatch: AppDispatch) => {
+  dispatch({ type: RESET_REGISTER_INITIALSTATE });
 };

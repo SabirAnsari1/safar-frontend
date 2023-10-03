@@ -1,10 +1,17 @@
-import { useAppSelector } from "../redux/store";
+import { useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "../redux/store";
 import { Box, Grid, Heading, Center } from "@chakra-ui/react";
 import { FavoritesPlaces } from "../components/FavoritesPlaces";
 import { Places } from "../utils/types";
+import { getFavoritesPlaces } from "../redux/favorites/action";
 
 export const Favorites = () => {
   const favorites = useAppSelector((store) => store.favoriteReducer.favorites);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getFavoritesPlaces);
+  }, []);
 
   return (
     <Box
@@ -35,7 +42,7 @@ export const Favorites = () => {
           gap={"1rem"}
         >
           {favorites?.map((el: Places) => (
-            <FavoritesPlaces key={el.id} {...el} />
+            <FavoritesPlaces key={el._id} {...el} />
           ))}
         </Grid>
       )}

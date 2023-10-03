@@ -44,7 +44,7 @@ export const favoriteReducer = (
     }
 
     case GET_FAVORITES_SUCCESS: {
-      return { ...state, isLoading: false, favorite: action.payload };
+      return { ...state, isLoading: false, favorites: action.payload };
     }
 
     case ADD_FAVORITE_SUCCESS: {

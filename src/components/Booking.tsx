@@ -16,10 +16,6 @@ let xxx = {
   price: 0,
   review: "",
   rating: "",
-  host: "",
-  hostImg: "",
-  yOh: "",
-  hostTag: "",
 };
 
 export const Booking = () => {

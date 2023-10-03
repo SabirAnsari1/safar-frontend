@@ -70,6 +70,16 @@ export const authReducer = (state = initialState, action: AuthAction) => {
       };
     }
 
+    case USER_LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        isAuth: false,
+        token: "",
+        existingUser: new Object(),
+        isLogout: true,
+      };
+    }
     case RESET_REGISTER_INITIALSTATE: {
       return {
         ...state,
@@ -82,16 +92,6 @@ export const authReducer = (state = initialState, action: AuthAction) => {
       };
     }
 
-    case USER_LOGOUT_SUCCESS: {
-      return {
-        ...state,
-        isLoading: false,
-        isAuth: false,
-        token: "",
-        existingUser: new Object(),
-        isLogout: true,
-      };
-    }
     default:
       return state;
   }
