@@ -12,9 +12,9 @@ export const getHomeAPI = async () => {
   } catch (err) {}
 };
 
-export const getPlacesAPI = async (queryParams?: {
-  params: { _page: number };
-}) => {
+export const getPlacesAPI = async (queryParams: object) => {
+  console.log(queryParams);
+
   try {
     const res: AxiosResponse<Places[]> = await axios.get(
       `${URL}/places/getplaces`,

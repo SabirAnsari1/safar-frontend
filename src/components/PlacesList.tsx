@@ -41,14 +41,24 @@ export const PlacesList = ({ str1, str2 }: PlacesListProp) => {
     setActivePage(newPageNumber);
   };
 
+  // const queryParams = {
+  //   params: {
+  //     _page: activePage,
+  //     _limit: limit,
+  //     q: query && query,
+  //     type: searchParams.get("residency"),
+  //     _sort: searchParams.get("order") && "price",
+  //     _order: searchParams.get("order"),
+  //   },
+  // };
+
   const queryParams = {
     params: {
-      _page: activePage,
-      _limit: limit,
-      q: query && query,
+      title: query && query,
+      pageno: activePage,
+      pagelimit: limit,
       type: searchParams.get("residency"),
-      _sort: searchParams.get("order") && "price",
-      _order: searchParams.get("order"),
+      sortbyprice: searchParams.get("order"),
     },
   };
 

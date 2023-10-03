@@ -72,9 +72,7 @@ export const getHomePage = (): any => async (dispatch: AppDispatch) => {
 };
 
 export const getPlaces =
-  (queryParams?: {
-    params: { _page: number; _limit: number; q: string };
-  }): any =>
+  (queryParams: object): any =>
   async (dispatch: AppDispatch) => {
     try {
       dispatch(placesRequest());
