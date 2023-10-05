@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import {
   Flex,
   Box,
@@ -22,7 +22,7 @@ import { BiSolidLogInCircle, BiSolidLogOutCircle } from "react-icons/bi";
 import { useAppSelector, useAppDispatch } from "../redux/store";
 import { logout, userRegisterResetFunc } from "../redux/authentication/action";
 import { shallowEqual } from "react-redux";
-import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -36,6 +36,7 @@ export const Navbar = () => {
     shallowEqual
   );
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   const handleLogout = () => {
     dispatch(logout(existingUser.token));
@@ -99,7 +100,9 @@ export const Navbar = () => {
               bg={colorMode === "light" ? "white" : "black"}
             >
               <Link to={"/places"} onClick={onClose}>
-                <Text>Places</Text>
+                <Text color={location.pathname === "/places" ? "#f1095d" : ""}>
+                  Places
+                </Text>
               </Link>
 
               <Link to={"/about"} onClick={onClose}>
