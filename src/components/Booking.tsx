@@ -27,8 +27,6 @@ export const Booking = () => {
   useEffect(() => {
     const xBookingProduct: Places = places?.find((el) => el._id === _id);
 
-    console.log(xBookingProduct);
-
     setBookingPlace(xBookingProduct);
   }, []);
 

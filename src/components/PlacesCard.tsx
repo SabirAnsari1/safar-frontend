@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   Text,
   Grid,
@@ -32,19 +32,21 @@ export const PlacesCard = ({
 }: Places) => {
   const { colorMode } = useColorMode();
   const dispatch = useAppDispatch();
-  const { isLoading, isError, errMessage, isfavorite } = useAppSelector(
-    (store) => ({
-      isLoading: store.favoriteReducer.isLoading,
-      isError: store.favoriteReducer.isError,
-      errMessage: store.favoriteReducer.errMessage,
-      isfavorite: store.favoriteReducer.isfavorite,
-    }),
-    shallowEqual
-  );
   const toast = useToast();
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  // const { isLoading, isError, errMessage, isfavorite } = useAppSelector(
+  //   (store) => ({
+  //     isLoading: store.favoriteReducer.isLoading,
+  //     isError: store.favoriteReducer.isError,
+  //     errMessage: store.favoriteReducer.errMessage,
+  //     isfavorite: store.favoriteReducer.isfavorite,
+  //   }),
+  //   shallowEqual
+  // );
 
   const handleAddFavorite = (_id: string) => {
     dispatch(addFavoritePlace(_id));
+    setIsFavorite(true);
   };
 
   // useEffect(() => {
@@ -77,9 +79,9 @@ export const PlacesCard = ({
   //   }
   // }, [isLoading, isError, isfavorite]);
 
-  useEffect(() => {
-    isfavorite && dispatch(favoriteResetFunc);
-  }, [isfavorite]);
+  // useEffect(() => {
+  //   isfavorite && dispatch(favoriteResetFunc);
+  // }, [isfavorite]);
 
   return (
     <Grid borderRadius="5px" w={"100%"} pos={"relative"}>
@@ -101,7 +103,7 @@ export const PlacesCard = ({
 
       {/* second */}
       <Box pos={"absolute"} top={"5%"} right={"7%"}>
-        {isfavorite ? (
+        {isFavorite ? (
           <Button bg={"none"} _hover={{ bg: "none" }}>
             <Icon
               aria-label="favorite"

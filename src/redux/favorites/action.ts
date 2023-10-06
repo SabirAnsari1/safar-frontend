@@ -91,10 +91,12 @@ export const addFavoritePlace = (_id: string) => (dispatch: AppDispatch) => {
     },
   })
     .then((res) => res.json())
-    .then(() => {
+    .then((res) => {
       dispatch({ type: ADD_FAVORITE_SUCCESS });
     })
-    .catch((err) => dispatch({ type: FAVORITE_FAILURE, payload: err.message }));
+    .catch((err) => {
+      dispatch({ type: FAVORITE_FAILURE, payload: err.message });
+    });
 };
 
 // export const deleteFavoritePlace = (_id: string) => (dispatch: AppDispatch) => {
