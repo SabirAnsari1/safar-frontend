@@ -77,9 +77,9 @@ export const PlacesCard = ({
   //   }
   // }, [isLoading, isError, isfavorite]);
 
-  // useEffect(() => {
-  //   isfavorite && dispatch(favoriteResetFunc);
-  // }, [isfavorite]);
+  useEffect(() => {
+    isfavorite && dispatch(favoriteResetFunc);
+  }, [isfavorite]);
 
   return (
     <Grid borderRadius="5px" w={"100%"} pos={"relative"}>
@@ -171,7 +171,10 @@ export const PlacesCard = ({
           color={"white"}
           isDisabled={availability === "unavailable"}
           _hover={{
-            bg: "null",
+            bg: availability === "unavailable" ? "null" : "white",
+            color: availability === "unavailable" ? "null" : "#f1095d",
+            border:
+              availability === "unavailable" ? "null" : "4px double #f1095d",
           }}
         >
           Book Now

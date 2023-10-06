@@ -57,7 +57,9 @@ export const HomeCard = ({ id, img, city, country, price, rating }: Home) => {
             "2xl": "md",
           }}
           _hover={{
-            bg: "null",
+            bg: "white",
+            color: "#f1095d",
+            border: "3px double #f1095d",
           }}
         >
           See More
@@ -85,3 +87,20 @@ export const HomeCard = ({ id, img, city, country, price, rating }: Home) => {
     </Grid>
   );
 };
+
+{
+  /* <Button
+  w={"100%"}
+  bgColor={"#f1095d"}
+  mt={".3rem"}
+  color={"white"}
+  isDisabled={availability === "unavailable"}
+  _hover={{
+    bg: availability === "unavailable" ? "null" : "white",
+    color: availability === "unavailable" ? "null" : "#f1095d",
+    border: availability === "unavailable" ? "null" : "4px double #f1095d",
+  }}
+>
+  Book Now
+</Button>; */
+}

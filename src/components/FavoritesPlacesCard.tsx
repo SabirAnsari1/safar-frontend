@@ -127,9 +127,10 @@ export const FavoritesPlacesCard = ({
             color={"white"}
             isDisabled={availability === "unavailable"}
             _hover={{
-              bg: "#fff",
-              border: "4px double #f1095d",
-              color: "#f1095d",
+              bg: availability === "unavailable" ? "null" : "white",
+              color: availability === "unavailable" ? "null" : "#f1095d",
+              border:
+                availability === "unavailable" ? "null" : "4px double #f1095d",
             }}
           >
             Book Now

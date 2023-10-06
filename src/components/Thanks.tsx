@@ -142,7 +142,9 @@ export const Thanks = ({ str1, str2, str3 }: ThanksProp) => {
                 mt={"1rem"}
                 color={"#fff"}
                 _hover={{
-                  bg: "null",
+                  bg: "white",
+                  color: "#f1095d",
+                  border: "3px double #f1095d",
                 }}
               >
                 Donate

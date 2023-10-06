@@ -98,7 +98,6 @@ export const SinglePlace = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [state, dispatch] = useReducer(guestsReducer, initGuests);
   const { checkin, checkout, adults, children, infants, rooms } = state;
-  const toast = useToast();
 
   const handleBookingPreview = () => {
     const bookingPreview = { ...state, city, country, type, price };
@@ -191,7 +190,9 @@ export const SinglePlace = ({
           color={"white"}
           onClick={onOpen}
           _hover={{
-            bg: "null",
+            bg: "white",
+            color: "#f1095d",
+            border: "4px double #f1095d",
           }}
         >
           Book Now
@@ -352,7 +353,27 @@ export const SinglePlace = ({
                   color={"white"}
                   w={"100%"}
                   _hover={{
-                    bg: "null",
+                    bg:
+                      checkin.length === 0 ||
+                      checkout.length === 0 ||
+                      adults === 0 ||
+                      rooms === 0
+                        ? "null"
+                        : "white",
+                    color:
+                      checkin.length === 0 ||
+                      checkout.length === 0 ||
+                      adults === 0 ||
+                      rooms === 0
+                        ? "null"
+                        : "#f1095d",
+                    border:
+                      checkin.length === 0 ||
+                      checkout.length === 0 ||
+                      adults === 0 ||
+                      rooms === 0
+                        ? "null"
+                        : "4px double #f1095d",
                   }}
                   onClick={handleBookingPreview}
                   isDisabled={
@@ -372,91 +393,3 @@ export const SinglePlace = ({
     </Box>
   );
 };
-
-// // Confirm Reservation
-
-// import { Text, Image, useColorMode, Icon, Box, Flex, Button } from "@chakra-ui/react";
-// import { Places } from "../utils/types";
-// import { AiFillStar } from "react-icons/ai";
-// import { BsFillSuitHeartFill } from "react-icons/bs";
-// import { ConfirmBooking } from "./ConfirmBooking";
-
-// export const SinglePlace = ({
-//   id,
-//   img,
-//   city,
-//   country,
-//   type,
-//   desc,
-//   availability,
-//   price,
-//   review,
-//   rating,
-//   host,
-//   hostImg,
-//   yOh,
-//   hostTag,
-// }: Places) => {
-//   const { colorMode } = useColorMode();
-//   // const { isOpen, onOpen, onClose } = useDisclosure();
-
-//   return (
-//     <Box borderRadius="5px" w={"50%"} margin={"auto"} pos={"relative"} mt={"5%"}>
-//       {/* first */}
-//       <Image src={img} alt={city} w={"100%"} maxH={"500px"} borderRadius="5px" />
-
-//       {/* second */}
-//       <Box pos={"absolute"} top={"5%"} right={"7%"}>
-//         <Icon aria-label="favorite" as={BsFillSuitHeartFill} color={"#f1095d"} />
-//       </Box>
-
-//       {/* third */}
-//       <Flex justify={"space-between"} mt={".3rem"}>
-//         <Text fontWeight={"semibold"} color={colorMode === "light" ? "black" : "white"}>
-//           {city}, {country}
-//         </Text>
-
-//         <Box>
-//           <Icon aria-label="rating" as={AiFillStar} color={"#567eb9"} /> {rating}
-//         </Box>
-//       </Flex>
-
-//       {/* forth */}
-//       <Text
-//         color={"#788097"}
-//         fontSize={{
-//           base: "1xl",
-//           sm: "1xl",
-//           md: "1xl",
-//           lg: "1xl",
-//           xl: "1xl",
-//           "2xl": "2xl",
-//         }}
-//       >
-//         {desc}
-//       </Text>
-
-//       {/* fifth */}
-//       <Text>{type}</Text>
-
-//       {/* sixth */}
-//       <Text color={availability === "available" ? "#567eb9" : "#f1095d"}>
-//         {availability === "available" ? "Available" : "Not Available"}
-//       </Text>
-
-//       {/* seventh */}
-//       <Text>₹ {price}</Text>
-
-//       {/* eight */}
-//       <Button
-//         w={"100%"}
-//         bgColor={"#f1095d"}
-//         mt={".3rem"}
-//         color={"white"}
-//         onClick={() => ConfirmBooking}
-//       >
-//         Book Now
-//       </Button>
-//     </Box>
-//   );
-// };

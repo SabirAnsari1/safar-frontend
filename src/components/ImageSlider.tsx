@@ -120,9 +120,9 @@ export const ImageSlider = () => {
                     "2xl": "md",
                   }}
                   _hover={{
-                    bg: "#fff",
-                    border: "4px double #f1095d",
+                    bg: "white",
                     color: "#f1095d",
+                    border: "4px double #f1095d",
                   }}
                 >
                   See More
