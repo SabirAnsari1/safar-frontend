@@ -18,16 +18,7 @@ interface SeeMoreProp {
 
 export const SeeMore = ({ str1, str2, str3 }: SeeMoreProp) => {
   return (
-    <Box
-      p={{
-        base: "1rem 1rem",
-        sm: "1rem 1rem",
-        md: "1rem 2rem",
-        lg: "2rem 5rem",
-        xl: "2rem 5rem",
-        "2xl": "3rem 5rem",
-      }}
-    >
+    <Box>
       {/* first */}
       <Center mb={"2rem"}>
         <Flex

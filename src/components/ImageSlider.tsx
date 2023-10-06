@@ -20,7 +20,10 @@ const sliderImages = [
   { img: one, quote: "Adventure is out there" },
   { img: two, quote: "Live your life by a compass, not a clock" },
   { img: three, quote: "Life begins at the end of your comfort zone" },
-  { img: four, quote: "A journey of a thousand miles begins with a single step" },
+  {
+    img: four,
+    quote: "A journey of a thousand miles begins with a single step",
+  },
   { img: five, quote: "To travel is to live" },
   {
     img: six,
@@ -29,7 +32,8 @@ const sliderImages = [
   { img: seven, quote: "Fill your life with experiences, not things" },
   {
     img: eight,
-    quote: " Human cannot discover new oceans unless he has the courage to lose sight of the shore",
+    quote:
+      " Human cannot discover new oceans unless he has the courage to lose sight of the shore",
   },
   { img: nine, quote: "Love is the food of life, travel is dessert" },
   { img: ten, quote: "Not all classrooms have 4 walls" },
@@ -49,16 +53,7 @@ export const ImageSlider = () => {
   };
 
   return (
-    <Center
-      p={{
-        base: "1rem 1rem",
-        sm: "1rem 1rem",
-        md: "1rem 2rem",
-        lg: "2rem 5rem",
-        xl: "2rem 5rem",
-        "2xl": "3rem 5rem",
-      }}
-    >
+    <Center>
       <Box
         w={{
           base: "100%",
@@ -74,7 +69,12 @@ export const ImageSlider = () => {
           {sliderImages?.map(({ img, quote }, index) => (
             <Box pos={"relative"} key={index}>
               <Box>
-                <Image src={img} alt={`${index + 1}`} borderRadius={"10px"} w={"100%"} />
+                <Image
+                  src={img}
+                  alt={`${index + 1}`}
+                  borderRadius={"10px"}
+                  w={"100%"}
+                />
               </Box>
 
               <Box

@@ -20,7 +20,7 @@ import google from "../assets/images/google.png";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { signup, userRegisterResetFunc } from "../redux/authentication/action";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { shallowEqual } from "react-redux";
 
 export const Signup = () => {
@@ -41,6 +41,7 @@ export const Signup = () => {
     }),
     shallowEqual
   );
+  const navigate = useNavigate();
 
   const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -114,9 +115,10 @@ export const Signup = () => {
             <FormControl>
               <VStack spacing={"1rem"}>
                 <Flex w={"100%"} gap={"1rem"}>
-                  <Button w={"50%"}>
-                    <Link to={"/login"}>Login</Link>
+                  <Button onClick={() => navigate("/login")} w={"50%"}>
+                    Login
                   </Button>
+
                   <Button
                     w={"50%"}
                     bgColor={"#f1095d"}

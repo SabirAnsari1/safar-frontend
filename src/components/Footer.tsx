@@ -1,4 +1,12 @@
-import { Box, Center, Flex, Image, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  Image,
+  ListItem,
+  Text,
+  UnorderedList,
+} from "@chakra-ui/react";
 import googlePlay from "../assets/images/googlePlay.png";
 import appleApp from "../assets/images/appleApp.png";
 import linkedin from "../assets/images/linkedin.png";
@@ -8,17 +16,7 @@ import instagram from "../assets/images/instagram.png";
 
 export const Footer = () => {
   return (
-    <Flex
-      p={{
-        base: "1rem 1rem",
-        sm: "1rem 1rem",
-        md: "1rem 2rem",
-        lg: "2rem 5rem",
-        xl: "2rem 5rem",
-        "2xl": "3rem 5rem",
-      }}
-      justify={"space-between"}
-    >
+    <Flex justify={"space-between"}>
       {/* first */}
       <Box
         display={{
@@ -87,7 +85,12 @@ export const Footer = () => {
         </Box>
 
         {/* fifth */}
-        <Flex w={"20%"} direction={"column"} gap={".5rem"} p={"1rem 0 1rem 1rem"}>
+        <Flex
+          w={"20%"}
+          direction={"column"}
+          gap={".5rem"}
+          p={"1rem 0 1rem 1rem"}
+        >
           <Image src={googlePlay} borderRadius={"5px"} />
           <Image src={appleApp} borderRadius={"5px"} />
 
@@ -112,7 +115,8 @@ export const Footer = () => {
         }}
       >
         <Center textAlign={"center"}>
-          Designed and build by Sabir Ansari & Juri Kalita, 2023 All rights reserved.
+          Designed and build by Sabir Ansari & Juri Kalita, 2023 All rights
+          reserved.
         </Center>
 
         <Flex justify={"space-around"}>

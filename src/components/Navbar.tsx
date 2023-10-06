@@ -54,8 +54,7 @@ export const Navbar = () => {
       maxH={"80px"}
       align={"center"}
       justify={"space-between"}
-      pos={"sticky"}
-      top={"0"}
+      pos={"fixed"}
       zIndex={"1"}
       bg={colorMode === "light" ? "#fff" : "#000"}
       p={{

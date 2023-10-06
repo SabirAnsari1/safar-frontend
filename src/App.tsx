@@ -9,7 +9,6 @@ function App() {
 
   return (
     <Box bgColor={bgColor} color={color}>
-      <Navbar />
       <AllRoutes />
     </Box>
   );

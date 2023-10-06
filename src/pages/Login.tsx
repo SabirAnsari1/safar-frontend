@@ -23,6 +23,7 @@ import google from "../assets/images/google.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { login } from "../redux/authentication/action";
 import { shallowEqual } from "react-redux";
+import { Navbar } from "../components/Navbar";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -103,107 +104,112 @@ export const Login = () => {
   }, [isLogout]);
 
   return (
-    <Flex minW={"100wh"} minH={"100vh"} justify={"center"} align={"center"}>
-      <Flex w={"80%"} h={"80%"} justify={"center"} align={"center"}>
-        <Box
-          w={{
-            base: "100%",
-            sm: "100%",
-            md: "70%",
-            lg: "50%",
-            xl: "50%",
-            "2xl": "50%",
-          }}
-          p={"1rem"}
-        >
-          {/* <FormControl> */}
-          <form onSubmit={handleLogin}>
-            <FormControl>
-              <VStack spacing={"1rem"}>
-                <Flex w={"100%"} gap={"1rem"}>
+    <Box>
+      <Navbar />
+
+      <Flex minW={"100wh"} minH={"100vh"} justify={"center"} align={"center"}>
+        <Flex w={"80%"} h={"80%"} justify={"center"} align={"center"}>
+          <Box
+            w={{
+              base: "100%",
+              sm: "100%",
+              md: "70%",
+              lg: "50%",
+              xl: "50%",
+              "2xl": "50%",
+            }}
+            p={"1rem"}
+          >
+            {/* <FormControl> */}
+            <form onSubmit={handleLogin}>
+              <FormControl>
+                <VStack spacing={"1rem"}>
+                  <Flex w={"100%"} gap={"1rem"}>
+                    <Button
+                      w={"50%"}
+                      bgColor={"#f1095d"}
+                      color={"white"}
+                      _hover={{
+                        bg: "null",
+                      }}
+                    >
+                      Login
+                    </Button>
+
+                    <Button onClick={() => navigate("/signup")} w={"50%"}>
+                      Register
+                    </Button>
+                  </Flex>
+
+                  <Input
+                    type="email"
+                    placeholder="Email"
+                    variant={"filled"}
+                    borderRadius={"5px 5px 0px 0px"}
+                    isRequired
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <InputGroup>
+                    <Input
+                      type={show ? "text" : "password"}
+                      placeholder="Password"
+                      borderRadius={"0px"}
+                      variant="filled"
+                      isRequired
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <InputRightElement>
+                      <Box onClick={() => setShow((prev) => !prev)}>
+                        {show ? (
+                          <IconButton
+                            aria-label={"hide"}
+                            icon={<FaRegEyeSlash />}
+                          />
+                        ) : (
+                          <IconButton aria-label={"show"} icon={<FaRegEye />} />
+                        )}
+                      </Box>
+                    </InputRightElement>
+                  </InputGroup>
+
                   <Button
-                    w={"50%"}
+                    w={"100%"}
                     bgColor={"#f1095d"}
                     color={"white"}
+                    borderRadius={"0px 0px 5px 5px"}
                     _hover={{
                       bg: "null",
                     }}
+                    type="submit"
                   >
                     Login
                   </Button>
-                  <Button w={"50%"}>
-                    <Link to={"/signup"}>Register</Link>
+                  <Center>
+                    <Text>
+                      Don't have account? <Link to="/signup">Signup</Link>
+                    </Text>
+                  </Center>
+                  <Center>
+                    <FormHelperText>Or</FormHelperText>
+                  </Center>
+
+                  <Button gap={".5rem"} p={"1.7rem"}>
+                    <Img src={facebook} w={"10%"} />
+                    <p>Signin with Facebook</p>
                   </Button>
-                </Flex>
 
-                <Input
-                  type="email"
-                  placeholder="Email"
-                  variant={"filled"}
-                  borderRadius={"5px 5px 0px 0px"}
-                  isRequired
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <InputGroup>
-                  <Input
-                    type={show ? "text" : "password"}
-                    placeholder="Password"
-                    borderRadius={"0px"}
-                    variant="filled"
-                    isRequired
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <InputRightElement>
-                    <Box onClick={() => setShow((prev) => !prev)}>
-                      {show ? (
-                        <IconButton
-                          aria-label={"hide"}
-                          icon={<FaRegEyeSlash />}
-                        />
-                      ) : (
-                        <IconButton aria-label={"show"} icon={<FaRegEye />} />
-                      )}
-                    </Box>
-                  </InputRightElement>
-                </InputGroup>
-
-                <Button
-                  w={"100%"}
-                  bgColor={"#f1095d"}
-                  color={"white"}
-                  borderRadius={"0px 0px 5px 5px"}
-                  _hover={{
-                    bg: "null",
-                  }}
-                  type="submit"
-                >
-                  Login
-                </Button>
-                <Center>
-                  <Text>
-                    Don't have account? <Link to="/signup">Signup</Link>
-                  </Text>
-                </Center>
-                <Center>
-                  <FormHelperText>Or</FormHelperText>
-                </Center>
-
-                <Button gap={".5rem"} p={"1.7rem"}>
-                  <Img src={facebook} w={"10%"} />
-                  <p>Signin with Facebook</p>
-                </Button>
-
-                <Button gap={".5rem"} p={"1.7rem"}>
-                  <Img src={google} w={"10%"} />
-                  <Text>Signin with Google</Text>
-                </Button>
-              </VStack>
-            </FormControl>
-          </form>
-        </Box>
+                  <Button gap={".5rem"} p={"1.7rem"}>
+                    <Img src={google} w={"10%"} />
+                    <Text>Signin with Google</Text>
+                  </Button>
+                </VStack>
+              </FormControl>
+            </form>
+          </Box>
+        </Flex>
       </Flex>
-    </Flex>
+    </Box>
   );
 };
