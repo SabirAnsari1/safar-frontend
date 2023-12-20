@@ -5,8 +5,8 @@ Welcome to SAFAR, an online hotel booking platform that allows users to book hot
 ## Tech Stack
 In this project, I have utilized the following technologies:
 
-1. HTML5
-2. CSS3
+1. HTML
+2. CSS
 3. JavaScript
 4. React.js
 5. TypeScript
