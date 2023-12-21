@@ -14,7 +14,7 @@ In this project, I have utilized the following technologies:-
 7. React-Redux
 8. Redux-Thunk
 9. Chakra-UI
-10. RESTful API
+10. RESTful-API
 11. Node.js
 12. Express.js
 13. MongoDB
