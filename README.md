@@ -1,8 +1,6 @@
 # SAFAR
 
-Safar is an e-commerce Hotel Booking Platform.
-
-Welcome to SAFAR, an online hotel booking platform that allows users to book hotels all over the world. With SAFAR, users can easily manage their holidays and events, helping them feel enthusiastic and relaxed. We're excited to have you here and look forward to your contributions.
+SAFAR is an e-commerce hotel booking platform that allows users to book hotels all over the world. With SAFAR, users can easily manage their holidays and events, helping them feel enthusiastic and relaxed.
 
 ## Tech Stack
 In this project, I have utilized the following technologies:-
