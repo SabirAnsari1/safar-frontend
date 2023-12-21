@@ -1,6 +1,8 @@
-# SAFAR - E-commerce Hotel Booking Platform
+# SAFAR
 
-Welcome to SAFAR, an online hotel booking platform that allows users to book hotels all over the world. With SAFAR, users can easily manage their holidays and events, helping them feel enthusiastic and relaxed. We're excited to have you here and look forward to your contributions!
+Safar is an e-commerce Hotel Booking Platform.
+
+Welcome to SAFAR, an online hotel booking platform that allows users to book hotels all over the world. With SAFAR, users can easily manage their holidays and events, helping them feel enthusiastic and relaxed. We're excited to have you here and look forward to your contributions.
 
 ## Tech Stack
 In this project, I have utilized the following technologies:-
@@ -21,11 +23,11 @@ Welcome and appreciate all contributions to SAFAR! Whether you want to report a 
 ## Instructions
 To contribute to SAFAR, follow these steps:-
 
-- Fork this repository to your own GitHub account.
-- Clone the forked repository to your local machine.
-- Make your desired contributions, whether it's implementing new features, fixing bugs, or improving existing functionality.
-- Commit and push your changes to your forked repository.
-- Submit a pull request, and we'll review your changes.
+- Fork this repository to your own GitHub account
+- Clone the forked repository to your local machine
+- Make your desired contributions, whether it's implementing new features, fixing bugs, or improving existing functionality
+- Commit and push your changes to your forked repository
+- Submit a pull request, and we'll review your changes
 
 
 ## Report bugs
