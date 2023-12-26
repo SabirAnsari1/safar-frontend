@@ -37,7 +37,7 @@ export const HomeList = ({ str1, str2 }: HomeListProp) => {
   return (
     <Box>
       {/* first */}
-      <Center mb={"2rem"}>
+      <Center mb={"2rem"} mt={"2rem"}>
         <Flex
           direction={{
             base: "column",
